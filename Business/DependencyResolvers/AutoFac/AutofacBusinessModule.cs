@@ -19,8 +19,6 @@ namespace Business.DependencyResolvers.AutoFac
         protected override void Load(ContainerBuilder builder)
         {
 
-            builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>().InstancePerDependency();
-
             builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance();
             builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
 
