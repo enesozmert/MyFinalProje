@@ -1,7 +1,4 @@
 ﻿using Business.Abstract;
-using Business.BusinessAspects.Autofac;
-using Business.Concrete;
-using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,15 +12,15 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class CategoriesController : ControllerBase
     {
         //naming convention
         //IoC container -- inversion of control
-        IProductService _productService;
+        ICategoryService _categoryService;
         //Loosely coupled
-        public ProductsController(IProductService productService)
+        public CategoriesController(ICategoryService categoryService)
         {
-            _productService = productService;
+            _categoryService = categoryService;
         }
         //AOP önünde sonunda çalışan kod parçacıkları- kodları iyileştirme
         [HttpGet("getall")]
@@ -32,7 +29,7 @@ namespace WebAPI.Controllers
             //Swagger
             //Depencenty chain--
             Thread.Sleep(1000);
-            var result = _productService.GetAll();
+            var result = _categoryService.GetAll();
             if (result.Success == true)
             {
                 return Ok(result);
@@ -46,30 +43,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _productService.GetById(id);
-            if (result.Success == true)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-
-        }
-
-        [HttpPost("add")]
-        public IActionResult Add(Product product)
-        {
-            var result = _productService.Add(product);
-            if (result.Success == true)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpGet("getbycategory")]
-        public IActionResult GetByCategory(int categoryId)
-        {
-            var result = _productService.GetAllByCategoryId(categoryId);
+            var result = _categoryService.GetById(id);
             if (result.Success == true)
             {
                 return Ok(result);

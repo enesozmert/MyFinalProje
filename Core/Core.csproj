@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Aspects\Autofac\Logger\" />
+    <Folder Include="Aspects\Autofac\Loggin\" />
     <Folder Include="CrossCuttingConcerns\Caching\Redis\" />
   </ItemGroup>
 
