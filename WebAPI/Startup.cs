@@ -65,6 +65,7 @@ namespace WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.ConfigureCustomExceptionMiddleware();
             //birden fazla varsa domain ile ayýr
             // /lara dikkat!
             app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
